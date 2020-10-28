@@ -97,14 +97,14 @@ public class StringUtilities {
         String secondWord = "";
         boolean loopedOverFirstSpace = false;
         for (char letter : spaceDelimitedString.toCharArray()) {
-            if (loopedOverFirstSpace) {
-                if (Character.isWhitespace(letter)) {
-                    break; // breaks out of loop if a 3rd word is found.
-                }
-                secondWord += String.valueOf(letter);
-            }
             if (!loopedOverFirstSpace && Character.isWhitespace(letter)) {
                 loopedOverFirstSpace = true;
+            } else if (loopedOverFirstSpace) {
+                if (Character.isWhitespace(letter)) {
+                    break;
+                } else {
+                    secondWord += String.valueOf(letter);
+                }
             }
         }
 
